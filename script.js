@@ -192,6 +192,8 @@ soundToggle.addEventListener("click", () => {
   state.sound = !state.sound;
   soundToggle.setAttribute("aria-pressed", String(state.sound));
   soundToggle.setAttribute("aria-label", state.sound ? "소리 켜짐" : "소리 꺼짐");
+  soundToggle.classList.toggle("is-sound-on", state.sound);
+  soundToggle.classList.toggle("is-sound-off", !state.sound);
   if (!state.sound && "speechSynthesis" in window) {
     window.speechSynthesis.cancel();
   }

@@ -293,7 +293,7 @@ h1 {
   line-height: 1;
 }
 
-.tool-button[aria-pressed="false"] {
+#soundToggle.is-sound-off {
   background: var(--ink);
   color: #ffffff;
 }
@@ -314,11 +314,11 @@ h1 {
   stroke-width: 3.4;
 }
 
-.tool-button[aria-pressed="false"] .sound-wave {
+#soundToggle.is-sound-off .sound-wave {
   opacity: 0;
 }
 
-.tool-button[aria-pressed="false"] .mute-slash {
+#soundToggle.is-sound-off .mute-slash {
   opacity: 1;
 }
 
