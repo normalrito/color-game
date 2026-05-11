@@ -347,13 +347,14 @@ h1 {
   }
 
   .choices {
-    grid-template-columns: repeat(var(--choice-columns, 2), minmax(0, 1fr));
+    grid-template-columns: repeat(var(--choice-columns, 2), var(--choice-size, 84px));
     justify-content: center;
-    width: min(78vw, 430px);
+    width: auto;
     margin: 0 auto;
   }
 
   .choice {
+    width: var(--choice-size, 84px);
     aspect-ratio: 1;
     min-height: 0;
   }

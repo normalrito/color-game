@@ -97,7 +97,21 @@ function pickRoundColors() {
 
 function updateChoiceColumns() {
   const columns = state.choiceCount <= 4 ? 2 : state.choiceCount <= 9 ? 3 : 4;
+  const rows = Math.ceil(state.choiceCount / columns);
+  const isNarrowScreen = window.matchMedia("(max-width: 780px)").matches;
+
   choices.style.setProperty("--choice-columns", columns);
+
+  if (isNarrowScreen) {
+    const gap = 10;
+    const widthBasedSize = (window.innerWidth * 0.78 - gap * (columns - 1)) / columns;
+    const heightBasedSize = (window.innerHeight * 0.34 - gap * (rows - 1)) / rows;
+    const maxSize = state.choiceCount <= 4 ? 82 : state.choiceCount <= 9 ? 72 : 64;
+    const size = Math.max(46, Math.min(widthBasedSize, heightBasedSize, maxSize));
+    choices.style.setProperty("--choice-size", `${Math.floor(size)}px`);
+  } else {
+    choices.style.removeProperty("--choice-size");
+  }
 }
 
 function renderRound() {
@@ -182,5 +196,6 @@ soundToggle.addEventListener("click", () => {
     window.speechSynthesis.cancel();
   }
 });
+window.addEventListener("resize", updateChoiceColumns);
 
 updateLevel(state.choiceCount);
