@@ -16,7 +16,7 @@
       </div>
       <h1>신나는 색깔놀이</h1>
       <button id="startButton" class="start-button" type="button">시작하기</button>
-      <p class="version">v1.1.2</p>
+      <p class="version">v1.1.4</p>
     </section>
 
     <main id="gameScreen" class="app" aria-live="polite" hidden>
@@ -25,6 +25,25 @@
           <p class="eyebrow">신나는 색깔놀이</p>
           <h1>같은 색깔 찾기</h1>
         </div>
+        <button id="soundToggle" class="tool-button" type="button" aria-label="소리 켜짐" aria-pressed="true">
+          <svg id="soundOnIcon" class="sound-icon" aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M9 18V5l11-2v13" />
+            <circle cx="6" cy="18" r="3" />
+            <circle cx="17" cy="16" r="3" />
+          </svg>
+          <svg id="soundOffIcon" class="sound-icon" aria-hidden="true" viewBox="0 0 24 24" hidden>
+            <path d="M9 18V5l11-2v13" />
+            <circle cx="6" cy="18" r="3" />
+            <circle cx="17" cy="16" r="3" />
+            <path d="M4 4l16 16" />
+          </svg>
+        </button>
+        <button id="resetButton" class="tool-button" type="button" aria-label="처음부터">
+          <svg class="tool-icon" aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M3 12a9 9 0 1 0 3-6.7" />
+            <path d="M3 4v6h6" />
+          </svg>
+        </button>
         <div class="score" aria-label="현재 맞힌 개수">
           <span id="score">0</span>
           <span>개</span>
@@ -52,17 +71,9 @@
         <button id="levelUp" class="icon-button" type="button" aria-label="선택지 늘리기">
           +
         </button>
-        <button id="soundToggle" class="text-button" type="button" aria-pressed="true">
-          <span class="button-icon" aria-hidden="true">♪</span>
-          <span class="button-label">소리 켬</span>
-        </button>
         <button id="nextButton" class="text-button" type="button" aria-label="다음 문제">
           <span class="button-icon" aria-hidden="true">▶</span>
           <span class="button-label">다음 문제</span>
-        </button>
-        <button id="resetButton" class="text-button" type="button" aria-label="처음부터">
-          <span class="button-icon" aria-hidden="true">↺</span>
-          <span class="button-label">처음부터</span>
         </button>
       </section>
     </main>

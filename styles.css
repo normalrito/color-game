@@ -104,10 +104,14 @@ button {
 }
 
 .topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  align-items: start;
+  gap: clamp(8px, 1.5vw, 16px);
+}
+
+.topbar > div:first-child {
+  min-width: 0;
 }
 
 .eyebrow,
@@ -246,7 +250,8 @@ h1 {
 }
 
 .icon-button,
-.text-button {
+.text-button,
+.tool-button {
   min-height: clamp(46px, 7vw, 56px);
   border: 2px solid var(--ink);
   border-radius: 8px;
@@ -268,8 +273,41 @@ h1 {
   font-size: clamp(0.9rem, 2.4vw, 1rem);
 }
 
+.tool-button {
+  width: clamp(52px, 8vw, 64px);
+  padding: 0;
+  line-height: 1;
+}
+
+.tool-button[aria-pressed="false"] {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.tool-icon,
+.sound-icon {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .button-icon {
-  display: none;
+  display: inline;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.button-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .level {
@@ -288,7 +326,8 @@ h1 {
 }
 
 .icon-button:focus-visible,
-.text-button:focus-visible {
+.text-button:focus-visible,
+.tool-button:focus-visible {
   outline: 5px solid var(--focus);
   outline-offset: 3px;
 }
@@ -373,7 +412,28 @@ h1 {
 
 @media (max-width: 430px) {
   .topbar {
-    flex-direction: column;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "title score score"
+      "title sound reset";
+    align-items: start;
+  }
+
+  .topbar > div:first-child {
+    grid-area: title;
+  }
+
+  .score {
+    grid-area: score;
+    justify-self: end;
+  }
+
+  #soundToggle {
+    grid-area: sound;
+  }
+
+  #resetButton {
+    grid-area: reset;
   }
 
   .score {
@@ -389,7 +449,8 @@ h1 {
   }
 
   .icon-button,
-  .text-button {
+  .text-button,
+  .tool-button {
     width: 44px;
     min-width: 44px;
     min-height: 44px;
@@ -410,19 +471,19 @@ h1 {
     font-size: 0.95rem;
   }
 
-  .button-icon {
-    display: inline;
-    font-size: 1.25rem;
-    line-height: 1;
+  .score {
+    min-width: 74px;
+    padding: 6px 10px;
   }
 
-  .button-label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
+  .score span:first-child {
+    font-size: 1.7rem;
+  }
+
+  .tool-icon,
+  .sound-icon {
+    width: 22px;
+    height: 22px;
   }
 }
 
