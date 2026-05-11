@@ -190,8 +190,9 @@ startButton.addEventListener("click", () => {
 });
 soundToggle.addEventListener("click", () => {
   state.sound = !state.sound;
-  soundToggle.textContent = state.sound ? "소리 켬" : "소리 끔";
+  soundToggle.querySelector(".button-label").textContent = state.sound ? "소리 켬" : "소리 끔";
   soundToggle.setAttribute("aria-pressed", String(state.sound));
+  soundToggle.setAttribute("aria-label", state.sound ? "소리 켜짐" : "소리 꺼짐");
   if (!state.sound && "speechSynthesis" in window) {
     window.speechSynthesis.cancel();
   }

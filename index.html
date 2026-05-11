@@ -16,7 +16,7 @@
       </div>
       <h1>신나는 색깔놀이</h1>
       <button id="startButton" class="start-button" type="button">시작하기</button>
-      <p class="version">v1.1.0</p>
+      <p class="version">v1.1.2</p>
     </section>
 
     <main id="gameScreen" class="app" aria-live="polite" hidden>
@@ -53,10 +53,17 @@
           +
         </button>
         <button id="soundToggle" class="text-button" type="button" aria-pressed="true">
-          소리 켬
+          <span class="button-icon" aria-hidden="true">♪</span>
+          <span class="button-label">소리 켬</span>
         </button>
-        <button id="nextButton" class="text-button" type="button">다음 문제</button>
-        <button id="resetButton" class="text-button" type="button">처음부터</button>
+        <button id="nextButton" class="text-button" type="button" aria-label="다음 문제">
+          <span class="button-icon" aria-hidden="true">▶</span>
+          <span class="button-label">다음 문제</span>
+        </button>
+        <button id="resetButton" class="text-button" type="button" aria-label="처음부터">
+          <span class="button-icon" aria-hidden="true">↺</span>
+          <span class="button-label">처음부터</span>
+        </button>
       </section>
     </main>
 
