@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>신나는 색깔놀이</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section id="titleScreen" class="title-screen" aria-label="시작 화면">
+      <div class="title-colors" aria-hidden="true">
+        <span style="--swatch: #e53935"></span>
+        <span style="--swatch: #fdd835"></span>
+        <span style="--swatch: #1e88e5"></span>
+        <span style="--swatch: #43a047"></span>
+      </div>
+      <h1>신나는 색깔놀이</h1>
+      <button id="startButton" class="start-button" type="button">시작하기</button>
+    </section>
+
+    <main id="gameScreen" class="app" aria-live="polite" hidden>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">신나는 색깔놀이</p>
+          <h1>같은 색깔 찾기</h1>
+        </div>
+        <div class="score" aria-label="현재 맞힌 개수">
+          <span id="score">0</span>
+          <span>개</span>
+        </div>
+      </header>
+
+      <section class="stage" aria-labelledby="prompt">
+        <div class="target-wrap">
+          <p id="prompt" class="prompt">같은 색깔을 찾아요</p>
+          <div id="targetCard" class="target-card" aria-label="찾아야 할 색깔"></div>
+          <p id="targetName" class="target-name">빨간색</p>
+        </div>
+
+        <div id="choices" class="choices" role="group" aria-label="색깔 선택"></div>
+      </section>
+
+      <section class="controls" aria-label="게임 설정">
+        <button id="levelDown" class="icon-button" type="button" aria-label="선택지 줄이기">
+          -
+        </button>
+        <div class="level">
+          <span>선택지</span>
+          <strong id="levelLabel">2개</strong>
+        </div>
+        <button id="levelUp" class="icon-button" type="button" aria-label="선택지 늘리기">
+          +
+        </button>
+        <button id="soundToggle" class="text-button" type="button" aria-pressed="true">
+          소리 켬
+        </button>
+        <button id="nextButton" class="text-button" type="button">다음 문제</button>
+        <button id="resetButton" class="text-button" type="button">처음부터</button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
