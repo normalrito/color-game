@@ -382,7 +382,28 @@ h1 {
   }
 
   .topbar {
-    align-items: flex-start;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "title score score"
+      "title sound reset";
+    align-items: start;
+  }
+
+  .topbar > div:first-child {
+    grid-area: title;
+  }
+
+  .score {
+    grid-area: score;
+    justify-self: end;
+  }
+
+  #soundToggle {
+    grid-area: sound;
+  }
+
+  #resetButton {
+    grid-area: reset;
   }
 
   .stage {
@@ -411,31 +432,6 @@ h1 {
 }
 
 @media (max-width: 430px) {
-  .topbar {
-    grid-template-columns: minmax(0, 1fr) auto auto;
-    grid-template-areas:
-      "title score score"
-      "title sound reset";
-    align-items: start;
-  }
-
-  .topbar > div:first-child {
-    grid-area: title;
-  }
-
-  .score {
-    grid-area: score;
-    justify-self: end;
-  }
-
-  #soundToggle {
-    grid-area: sound;
-  }
-
-  #resetButton {
-    grid-area: reset;
-  }
-
   .score {
     min-height: 58px;
   }
