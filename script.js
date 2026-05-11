@@ -35,8 +35,6 @@ const levelDown = document.querySelector("#levelDown");
 const levelUp = document.querySelector("#levelUp");
 const resetButton = document.querySelector("#resetButton");
 const soundToggle = document.querySelector("#soundToggle");
-const soundOnIcon = document.querySelector("#soundOnIcon");
-const soundOffIcon = document.querySelector("#soundOffIcon");
 const nextButton = document.querySelector("#nextButton");
 let audioContext;
 
@@ -194,8 +192,6 @@ soundToggle.addEventListener("click", () => {
   state.sound = !state.sound;
   soundToggle.setAttribute("aria-pressed", String(state.sound));
   soundToggle.setAttribute("aria-label", state.sound ? "소리 켜짐" : "소리 꺼짐");
-  soundOnIcon.hidden = !state.sound;
-  soundOffIcon.hidden = state.sound;
   if (!state.sound && "speechSynthesis" in window) {
     window.speechSynthesis.cancel();
   }

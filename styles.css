@@ -309,6 +309,19 @@ h1 {
   stroke-linejoin: round;
 }
 
+.mute-slash {
+  opacity: 0;
+  stroke-width: 3.4;
+}
+
+.tool-button[aria-pressed="false"] .sound-wave {
+  opacity: 0;
+}
+
+.tool-button[aria-pressed="false"] .mute-slash {
+  opacity: 1;
+}
+
 .button-icon {
   display: inline;
   font-size: 1.1rem;

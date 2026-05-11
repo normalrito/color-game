@@ -16,7 +16,7 @@
       </div>
       <h1>신나는 색깔놀이</h1>
       <button id="startButton" class="start-button" type="button">시작하기</button>
-      <p class="version">v1.1.6</p>
+      <p class="version">v1.1.9</p>
     </section>
 
     <main id="gameScreen" class="app" aria-live="polite" hidden>
@@ -30,16 +30,11 @@
           <span>개</span>
         </div>
         <button id="soundToggle" class="tool-button" type="button" aria-label="소리 켜짐" aria-pressed="true">
-          <svg id="soundOnIcon" class="sound-icon" aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M9 18V5l11-2v13" />
-            <circle cx="6" cy="18" r="3" />
-            <circle cx="17" cy="16" r="3" />
-          </svg>
-          <svg id="soundOffIcon" class="sound-icon" aria-hidden="true" viewBox="0 0 24 24" hidden>
-            <path d="M9 18V5l11-2v13" />
-            <circle cx="6" cy="18" r="3" />
-            <circle cx="17" cy="16" r="3" />
-            <path d="M4 4l16 16" />
+          <svg class="sound-icon" aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M4 9v6h4l5 4V5L8 9H4z" />
+            <path class="sound-wave" d="M16 8.5a5 5 0 0 1 0 7" />
+            <path class="sound-wave" d="M18.5 6a8.5 8.5 0 0 1 0 12" />
+            <path class="mute-slash" d="M3 3l18 18" />
           </svg>
         </button>
         <button id="resetButton" class="tool-button" type="button" aria-label="처음부터">
