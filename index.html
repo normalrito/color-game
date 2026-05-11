@@ -16,7 +16,7 @@
       </div>
       <h1>신나는 색깔놀이</h1>
       <button id="startButton" class="start-button" type="button">시작하기</button>
-      <p class="version">v1.1.5</p>
+      <p class="version">v1.1.6</p>
     </section>
 
     <main id="gameScreen" class="app" aria-live="polite" hidden>
@@ -24,6 +24,10 @@
         <div>
           <p class="eyebrow">신나는 색깔놀이</p>
           <h1>같은 색깔 찾기</h1>
+        </div>
+        <div class="score" aria-label="현재 맞힌 개수">
+          <span id="score">0</span>
+          <span>개</span>
         </div>
         <button id="soundToggle" class="tool-button" type="button" aria-label="소리 켜짐" aria-pressed="true">
           <svg id="soundOnIcon" class="sound-icon" aria-hidden="true" viewBox="0 0 24 24">
@@ -44,10 +48,6 @@
             <path d="M3 4v6h6" />
           </svg>
         </button>
-        <div class="score" aria-label="현재 맞힌 개수">
-          <span id="score">0</span>
-          <span>개</span>
-        </div>
       </header>
 
       <section class="stage" aria-labelledby="prompt">

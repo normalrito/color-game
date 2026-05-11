@@ -106,12 +106,26 @@ button {
 .topbar {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto auto auto;
+  grid-template-areas: "title sound reset score";
   align-items: start;
   gap: clamp(8px, 1.5vw, 16px);
 }
 
 .topbar > div:first-child {
+  grid-area: title;
   min-width: 0;
+}
+
+.score {
+  grid-area: score;
+}
+
+#soundToggle {
+  grid-area: sound;
+}
+
+#resetButton {
+  grid-area: reset;
 }
 
 .eyebrow,
@@ -391,19 +405,6 @@ h1 {
 
   .topbar > div:first-child {
     grid-area: title;
-  }
-
-  .score {
-    grid-area: score;
-    justify-self: end;
-  }
-
-  #soundToggle {
-    grid-area: sound;
-  }
-
-  #resetButton {
-    grid-area: reset;
   }
 
   .stage {
