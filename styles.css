@@ -84,6 +84,13 @@ button {
   box-shadow: var(--shadow);
 }
 
+.version {
+  margin: 0;
+  color: rgba(29, 36, 51, 0.36);
+  font-size: clamp(0.78rem, 2.2vw, 0.95rem);
+  font-weight: 800;
+}
+
 .app {
   width: min(1120px, 100%);
   height: 100vh;
