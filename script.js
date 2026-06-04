@@ -26,6 +26,7 @@ const mixRecipes = [
   { a: "빨간색", b: "파란색", result: "보라색" },
   { a: "흰색", b: "빨간색", result: "분홍색" },
   { a: "흰색", b: "검은색", result: "회색" },
+  { a: "파란색", b: "흰색", result: "하늘색" },
 ];
 
 const state = {
@@ -41,6 +42,7 @@ const state = {
   tapGoal: 0,
   tapCount: 0,
   mixRecipe: mixRecipes[0],
+  mixIndex: 0,
   mixRevealed: false,
 };
 
@@ -64,7 +66,9 @@ const score = document.querySelector("#score");
 const levelLabel = document.querySelector("#levelLabel");
 const levelDown = document.querySelector("#levelDown");
 const levelUp = document.querySelector("#levelUp");
+const prevButton = document.querySelector("#prevButton");
 const resetButton = document.querySelector("#resetButton");
+const homeButton = document.querySelector("#homeButton");
 const soundToggle = document.querySelector("#soundToggle");
 const nextButton = document.querySelector("#nextButton");
 let audioContext;
@@ -244,7 +248,7 @@ function buildTapCountRound() {
 }
 
 function buildMixRound() {
-  const recipe = shuffle(mixRecipes)[0];
+  const recipe = state.choiceCount <= 1 ? mixRecipes[state.mixIndex] : shuffle(mixRecipes)[0];
   state.mixRecipe = recipe;
   state.mixRevealed = false;
   return buildMixChoices(recipe);
@@ -289,6 +293,20 @@ function renderChoices(roundChoices) {
   });
 }
 
+function renderMixSourceCards() {
+  const colorA = findColor(state.mixRecipe.a);
+  const colorB = findColor(state.mixRecipe.b);
+  choices.innerHTML = "";
+
+  [colorA, colorB].forEach((color) => {
+    const card = document.createElement("div");
+    card.className = "choice source-card";
+    card.style.backgroundColor = color.value;
+    card.setAttribute("aria-label", color.name);
+    choices.append(card);
+  });
+}
+
 function renderRound() {
   state.waiting = false;
   window.clearTimeout(state.nextTimer);
@@ -297,11 +315,16 @@ function renderRound() {
   updateChoiceColumns();
 
   renderChoices(buildRound());
+  updatePrevButton();
   fitGameTitle();
 
   if (state.started) {
     speak(prompt.textContent);
   }
+}
+
+function updatePrevButton() {
+  prevButton.hidden = !(state.game === "mixColors" && state.choiceCount <= 1);
 }
 
 function completeRound() {
@@ -318,6 +341,9 @@ function revealMixResult() {
   state.mixRevealed = true;
   setMixTarget(state.mixRecipe, true);
   prompt.textContent = `${state.target.name}이 되었어요`;
+  if (state.game === "mixColors" && state.choiceCount <= 1) {
+    renderMixSourceCards();
+  }
   playCorrectSound();
   speak(prompt.textContent);
 }
@@ -425,6 +451,7 @@ function updateLevel(nextCount) {
   levelLabel.textContent = `${state.choiceCount}개`;
   levelDown.disabled = state.choiceCount === minChoices;
   levelUp.disabled = state.choiceCount === 12;
+  updatePrevButton();
 
   if (state.started && state.game === "mixColors") {
     state.mixRevealed = false;
@@ -444,13 +471,58 @@ function resetGame() {
   renderRound();
 }
 
+function showMixRecipeByStep(step) {
+  const total = mixRecipes.length;
+  state.mixIndex = (state.mixIndex + step + total) % total;
+  state.mixRecipe = mixRecipes[state.mixIndex];
+  state.mixRevealed = false;
+  renderChoices(buildMixChoices(state.mixRecipe));
+  updatePrevButton();
+  fitGameTitle();
+  if (state.started) {
+    speak(prompt.textContent);
+  }
+}
+
+function handlePrevious() {
+  if (state.game === "mixColors" && state.choiceCount <= 1) {
+    if (state.mixRevealed) {
+      state.mixRevealed = false;
+      renderChoices(buildMixChoices(state.mixRecipe));
+      updatePrevButton();
+      fitGameTitle();
+      speak(prompt.textContent);
+      return;
+    }
+
+    showMixRecipeByStep(-1);
+  }
+}
+
 function handleNext() {
   if (state.game === "mixColors" && state.choiceCount <= 1 && !state.mixRevealed) {
     revealMixResult();
     return;
   }
 
+  if (state.game === "mixColors" && state.choiceCount <= 1) {
+    showMixRecipeByStep(1);
+    return;
+  }
+
   renderRound();
+}
+
+function goHome() {
+  window.clearTimeout(state.nextTimer);
+  state.started = false;
+  state.waiting = false;
+  gameScreen.hidden = true;
+  menuScreen.hidden = true;
+  titleScreen.hidden = false;
+  choices.innerHTML = "";
+  targetWrap.classList.remove("mix-active");
+  targetCard.classList.remove("mix-card", "mix-revealed", "correct");
 }
 
 function startGame(game) {
@@ -461,6 +533,7 @@ function startGame(game) {
   if (state.game === "mixColors" && state.choiceCount === 1) {
     state.choiceCount = 0;
   }
+  updatePrevButton();
   levelLabel.textContent = `${state.choiceCount}개`;
   levelDown.disabled = state.choiceCount === (state.game === "findAll" ? 3 : state.game === "mixColors" ? 0 : 2);
   levelUp.disabled = state.choiceCount === 12;
@@ -479,7 +552,9 @@ function startGame(game) {
 
 levelDown.addEventListener("click", () => updateLevel(state.choiceCount - 1));
 levelUp.addEventListener("click", () => updateLevel(state.choiceCount + 1));
+prevButton.addEventListener("click", handlePrevious);
 resetButton.addEventListener("click", resetGame);
+homeButton.addEventListener("click", goHome);
 nextButton.addEventListener("click", handleNext);
 startButton.addEventListener("click", () => {
   titleScreen.hidden = true;

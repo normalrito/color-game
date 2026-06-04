@@ -21,7 +21,7 @@
         </span>
       </h1>
       <button id="startButton" class="start-button" type="button">시작하기</button>
-      <p class="version">v1.2.12</p>
+      <p class="version">v1.2.15</p>
     </section>
 
     <section id="menuScreen" class="title-screen menu-screen" aria-label="게임 선택 화면" hidden>
@@ -52,6 +52,13 @@
             <path class="mute-slash" d="M3 3l18 18" />
           </svg>
         </button>
+        <button id="homeButton" class="tool-button" type="button" aria-label="시작 화면">
+          <svg class="tool-icon" aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M3 11l9-8 9 8" />
+            <path d="M5 10v10h14V10" />
+            <path d="M9 20v-6h6v6" />
+          </svg>
+        </button>
         <button id="resetButton" class="tool-button" type="button" aria-label="처음부터">
           <svg class="tool-icon" aria-hidden="true" viewBox="0 0 24 24">
             <path d="M3 12a9 9 0 1 0 3-6.7" />
@@ -78,6 +85,10 @@
       </section>
 
       <section class="controls" aria-label="게임 설정">
+        <button id="prevButton" class="text-button" type="button" aria-label="이전 설명" hidden>
+          <span class="button-icon" aria-hidden="true">◀</span>
+          <span class="button-label">이전</span>
+        </button>
         <button id="levelDown" class="icon-button" type="button" aria-label="선택지 줄이기">
           -
         </button>
