@@ -148,6 +148,10 @@ h1 {
   letter-spacing: 0;
 }
 
+.topbar h1 {
+  white-space: nowrap;
+}
+
 .score {
   min-width: 94px;
   min-height: clamp(58px, 8vw, 72px);
@@ -494,6 +498,24 @@ h1 {
   .sound-icon {
     width: 22px;
     height: 22px;
+  }
+}
+
+@media (max-width: 360px) {
+  .topbar {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "title title title"
+      ". score score"
+      ". sound reset";
+  }
+
+  .topbar h1 {
+    font-size: 1.45rem;
+  }
+
+  .eyebrow {
+    font-size: 0.78rem;
   }
 }
 
