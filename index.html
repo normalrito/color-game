@@ -16,7 +16,17 @@
       </div>
       <h1>신나는 색깔놀이</h1>
       <button id="startButton" class="start-button" type="button">시작하기</button>
-      <p class="version">v1.1.12</p>
+      <p class="version">v1.2.4</p>
+    </section>
+
+    <section id="menuScreen" class="title-screen menu-screen" aria-label="게임 선택 화면" hidden>
+      <h1>게임을 골라요</h1>
+      <div class="game-menu" aria-label="게임 선택">
+        <button class="game-select" type="button" data-game="matchOne">같은 색깔 찾기</button>
+        <button class="game-select" type="button" data-game="findAll">같은 색 모두 찾기</button>
+        <button class="game-select" type="button" data-game="tapCount">숫자만큼 누르기</button>
+        <button class="game-select" type="button" data-game="mixColors">색 섞기 퀴즈</button>
+      </div>
     </section>
 
     <main id="gameScreen" class="app" aria-live="polite" hidden>
@@ -48,7 +58,14 @@
       <section class="stage" aria-labelledby="prompt">
         <div class="target-wrap">
           <p id="prompt" class="prompt">같은 색깔을 찾아요</p>
-          <div id="targetCard" class="target-card" aria-label="찾아야 할 색깔"></div>
+          <div id="targetCard" class="target-card" aria-label="찾아야 할 색깔">
+            <div id="mixLayer" class="mix-layer" hidden>
+              <div id="mixColorA" class="mix-color mix-color-a"></div>
+              <div id="mixColorB" class="mix-color mix-color-b"></div>
+              <div id="mixResult" class="mix-result"></div>
+            </div>
+            <span id="targetCount" class="target-count" hidden></span>
+          </div>
           <p id="targetName" class="target-name">빨간색</p>
         </div>
 
