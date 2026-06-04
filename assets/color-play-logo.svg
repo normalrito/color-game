@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-label="신나는 색깔놀이 로고">
+  <defs>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#1d2433" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#softShadow)">
+    <rect x="116" y="32" width="78" height="78" rx="10" fill="#fff"/>
+    <rect x="128" y="44" width="54" height="54" rx="4" fill="#e53935"/>
+
+    <rect x="234" y="32" width="78" height="78" rx="10" fill="#fff"/>
+    <rect x="246" y="44" width="54" height="54" rx="4" fill="#fdd835"/>
+
+    <rect x="352" y="32" width="78" height="78" rx="10" fill="#fff"/>
+    <rect x="364" y="44" width="54" height="54" rx="4" fill="#1e88e5"/>
+
+    <rect x="470" y="32" width="78" height="78" rx="10" fill="#fff"/>
+    <rect x="482" y="44" width="54" height="54" rx="4" fill="#43a047"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <path d="M210 178c46-62 84-62 130 0 45-62 84-62 130 0" fill="none" stroke="#ff9f1c" stroke-width="28" stroke-linecap="round"/>
+    <path d="M294 165c19 16 33 23 46 23s27-7 46-23" fill="none" stroke="#fdd835" stroke-width="22" stroke-linecap="round"/>
+    <circle cx="320" cy="188" r="36" fill="#fb8c00"/>
+    <circle cx="320" cy="188" r="18" fill="#ffd166"/>
+  </g>
+
+  <g fill="none" stroke-linecap="round" stroke-width="16">
+    <path d="M106 164c-30 8-48 22-60 43" stroke="#e53935"/>
+    <path d="M145 184c-26 6-44 18-56 36" stroke="#f06292"/>
+    <path d="M534 164c30 8 48 22 60 43" stroke="#1e88e5"/>
+    <path d="M495 184c26 6 44 18 56 36" stroke="#8e24aa"/>
+  </g>
+
+  <g fill="#f4b740">
+    <circle cx="242" cy="150" r="8"/>
+    <circle cx="280" cy="134" r="7"/>
+    <circle cx="360" cy="134" r="7"/>
+    <circle cx="398" cy="150" r="8"/>
+  </g>
+  <g fill="#43a047">
+    <circle cx="186" cy="144" r="7"/>
+    <circle cx="454" cy="144" r="7"/>
+  </g>
+</svg>

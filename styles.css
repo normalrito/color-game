@@ -56,6 +56,40 @@ button {
   line-height: 1.02;
 }
 
+.title-wordmark {
+  display: grid;
+  justify-items: center;
+  gap: clamp(6px, 1.5vw, 12px);
+  color: var(--ink);
+}
+
+.wordmark-small {
+  padding: 6px 14px;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: clamp(1.25rem, 4vw, 2.4rem);
+  line-height: 1;
+  box-shadow: 0 8px 18px rgba(26, 34, 50, 0.1);
+}
+
+.wordmark-main {
+  display: flex;
+  gap: clamp(4px, 1vw, 10px);
+  font-size: clamp(4rem, 15vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: 0;
+}
+
+.wordmark-main span {
+  color: var(--mark);
+  -webkit-text-stroke: clamp(2px, 0.5vw, 5px) #ffffff;
+  paint-order: stroke fill;
+  text-shadow:
+    0 8px 0 rgba(29, 36, 51, 0.1),
+    0 14px 24px rgba(26, 34, 50, 0.18);
+}
+
 .menu-screen h1 {
   font-size: clamp(2.5rem, 8vw, 5.6rem);
 }
@@ -63,15 +97,78 @@ button {
 .title-colors {
   display: grid;
   grid-template-columns: repeat(4, clamp(48px, 9vw, 94px));
-  gap: clamp(10px, 2vw, 18px);
+  gap: clamp(12px, 2.4vw, 22px);
 }
 
 .title-colors span {
+  position: relative;
   aspect-ratio: 1;
-  border: 6px solid #ffffff;
-  border-radius: 8px;
+  border: 5px solid #ffffff;
+  border-radius: 42% 58% 48% 52% / 48% 44% 56% 52%;
   background: var(--swatch);
-  box-shadow: var(--shadow);
+  box-shadow:
+    inset 0 10px 16px rgba(255, 255, 255, 0.22),
+    inset 0 -12px 18px rgba(29, 36, 51, 0.12),
+    var(--shadow);
+  transform: rotate(var(--tilt, -3deg));
+}
+
+.title-colors span:nth-child(2) {
+  --tilt: 4deg;
+  border-radius: 54% 46% 51% 49% / 43% 57% 44% 56%;
+}
+
+.title-colors span:nth-child(3) {
+  --tilt: -5deg;
+  border-radius: 45% 55% 58% 42% / 56% 44% 52% 48%;
+}
+
+.title-colors span:nth-child(4) {
+  --tilt: 3deg;
+  border-radius: 57% 43% 46% 54% / 50% 58% 42% 50%;
+}
+
+.title-colors span::before,
+.title-colors span::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  background: var(--swatch);
+}
+
+.title-colors span::before {
+  width: 28%;
+  height: 28%;
+  right: -12%;
+  top: 14%;
+  box-shadow:
+    0 0 0 4px #ffffff,
+    0 6px 12px rgba(26, 34, 50, 0.12);
+}
+
+.title-colors span::after {
+  width: 18%;
+  height: 18%;
+  left: 4%;
+  bottom: -10%;
+  box-shadow:
+    0 0 0 4px #ffffff,
+    0 5px 10px rgba(26, 34, 50, 0.1);
+}
+
+.title-art {
+  width: min(520px, 86vw);
+  max-height: min(28vh, 260px);
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 14px 32px rgba(26, 34, 50, 0.12);
+}
+
+.title-logo {
+  width: min(520px, 88vw);
+  max-height: min(24vh, 220px);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .start-button,
