@@ -26,6 +26,7 @@ const state = {
 const titleScreen = document.querySelector("#titleScreen");
 const gameScreen = document.querySelector("#gameScreen");
 const startButton = document.querySelector("#startButton");
+const gameTitle = document.querySelector("#gameTitle");
 const targetCard = document.querySelector("#targetCard");
 const targetName = document.querySelector("#targetName");
 const choices = document.querySelector("#choices");
@@ -114,6 +115,19 @@ function updateChoiceColumns() {
   }
 }
 
+function fitGameTitle() {
+  if (gameScreen.hidden) return;
+
+  gameTitle.style.fontSize = "";
+  const titleWrap = gameTitle.parentElement;
+  let size = parseFloat(window.getComputedStyle(gameTitle).fontSize);
+
+  while (gameTitle.scrollWidth > titleWrap.clientWidth && size > 16) {
+    size -= 1;
+    gameTitle.style.fontSize = `${size}px`;
+  }
+}
+
 function renderRound() {
   state.waiting = false;
   window.clearTimeout(state.nextTimer);
@@ -186,6 +200,7 @@ startButton.addEventListener("click", () => {
   state.started = true;
   titleScreen.hidden = true;
   gameScreen.hidden = false;
+  requestAnimationFrame(fitGameTitle);
   renderRound();
 });
 soundToggle.addEventListener("click", () => {
@@ -198,6 +213,9 @@ soundToggle.addEventListener("click", () => {
     window.speechSynthesis.cancel();
   }
 });
-window.addEventListener("resize", updateChoiceColumns);
+window.addEventListener("resize", () => {
+  updateChoiceColumns();
+  fitGameTitle();
+});
 
 updateLevel(state.choiceCount);
