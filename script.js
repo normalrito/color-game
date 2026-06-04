@@ -51,6 +51,7 @@ const startButton = document.querySelector("#startButton");
 const gameButtons = document.querySelectorAll(".game-select");
 const gameTitle = document.querySelector("#gameTitle");
 const prompt = document.querySelector("#prompt");
+const targetWrap = document.querySelector(".target-wrap");
 const targetCard = document.querySelector("#targetCard");
 const mixLayer = document.querySelector("#mixLayer");
 const mixColorA = document.querySelector("#mixColorA");
@@ -161,7 +162,8 @@ function fitGameTitle() {
 
 function setTarget(color, countText = "") {
   state.target = color;
-  targetCard.classList.remove("mix-revealed");
+  targetWrap.classList.remove("mix-active");
+  targetCard.classList.remove("mix-card", "mix-revealed");
   mixLayer.hidden = true;
   targetCard.style.backgroundColor = color.value;
   targetName.textContent = countText ? `${color.name} ${countText}` : color.name;
@@ -176,6 +178,8 @@ function setMixTarget(recipe, revealed = false) {
   const result = findColor(recipe.result);
 
   state.target = result;
+  targetWrap.classList.add("mix-active");
+  targetCard.classList.add("mix-card");
   targetCard.style.backgroundColor = "transparent";
   targetCard.style.setProperty("--mix-a", colorA.value);
   targetCard.style.setProperty("--mix-b", colorB.value);
